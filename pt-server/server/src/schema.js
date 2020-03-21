@@ -5,6 +5,7 @@ const typeDefs = gql`
     allPinballMachines: [Machine]!
     allOps: [Operator]
     allRegions: [Region]
+    getLocationsByRegion(region: String): [Location]
   }
 
   #These are the canonical machine descriptions, not the location-centric ones
@@ -81,7 +82,11 @@ const typeDefs = gql`
     last_updated_by_user_id: Int
     is_stern_army: Boolean
     country: String
+    distance: Float
+    bearing: String
     num_machines: Int
+    location_machine_xrefs: [MachineXref]
+    machine_names: [String]
   }
 
   type Operator {

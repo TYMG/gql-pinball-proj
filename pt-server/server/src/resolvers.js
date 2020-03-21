@@ -11,7 +11,10 @@ module.exports = {
       dataSources.pinballMachineAPI.getAllOperators(),
 
     allRegions: (_, __, { dataSources }) =>
-      dataSources.pinballMachineAPI.getAllRegions()
+      dataSources.pinballMachineAPI.getAllRegions(),
+
+    getLocationsByRegion: (_, { region }, { dataSources }) =>
+      dataSources.pinballMachineAPI.getLocationsByRegion({ region: region })
   }
 
   /* Mutation: {

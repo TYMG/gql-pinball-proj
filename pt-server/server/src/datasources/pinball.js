@@ -60,7 +60,8 @@ class PinballMachineAPI extends RESTDataSource {
       last_updated_by_user_id: loc.last_updated_by_user_id,
       is_stern_army: loc.is_stern_army,
       country: loc.country,
-      num_machines: loc.num_machines
+      num_machines: loc.num_machines,
+      location_machine_xrefs: loc.location_machine_xrefs
     };
   }
 
@@ -131,7 +132,19 @@ class PinballMachineAPI extends RESTDataSource {
     */
   }
 
-  async getLocationBasedOnRegion() {
+  async getLocationsByRegion({ region }) {
+    console.log(region);
+    const response = await this.get("/region/" + region + "/locations");
+
+    let returnArray = [];
+    if (response) {
+      response["locations"].forEach(element => {
+        //console.log("test", element);
+        returnArray.push(this.locationReducer(element));
+      });
+      return returnArray;
+    }
+
     //https://pinballmap.com/api/v1/region/ca-central/locations
   }
 
