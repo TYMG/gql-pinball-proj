@@ -8,7 +8,10 @@ module.exports = {
       dataSources.launchAPI.getLaunchById({ launchId: id }),
     me: (_, __, { dataSources }) => dataSources.userAPI.findOrCreateUser() */
     allOps: (_, __, { dataSources }) =>
-      dataSources.pinballMachineAPI.getAllOperators()
+      dataSources.pinballMachineAPI.getAllOperators(),
+
+    allRegions: (_, __, { dataSources }) =>
+      dataSources.pinballMachineAPI.getAllRegions()
   }
 
   /* Mutation: {
