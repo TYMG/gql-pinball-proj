@@ -126,14 +126,22 @@ class PinballMachineAPI extends RESTDataSource {
     //https://pinballmap.com/api/v1/regions
   }
 
-  async getLocations() {
+  async getLocations({ region }) {
+    const response = await this.get("/locations", { region: region });
+    let returnArray = [];
+    if (response) {
+      response["locations"].forEach(element => {
+        //console.log("test", element);
+        returnArray.push(this.locationReducer(element));
+      });
+      return returnArray;
+    }
     /* https://pinballmap.com/api/v1/locations?region=ca-central 
     the region is required: its a string
     */
   }
 
   async getLocationsByRegion({ region }) {
-    console.log(region);
     const response = await this.get("/region/" + region + "/locations");
 
     let returnArray = [];

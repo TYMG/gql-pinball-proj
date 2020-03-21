@@ -5,6 +5,7 @@ const typeDefs = gql`
     allPinballMachines: [Machine]!
     allOps: [Operator]
     allRegions: [Region]
+    allLocations(region: String): [Location]
     getLocationsByRegion(region: String): [Location]
   }
 
